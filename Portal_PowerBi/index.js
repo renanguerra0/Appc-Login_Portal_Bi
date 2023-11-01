@@ -5,27 +5,26 @@ function toggleSidebar() {
     sidebar.classList.toggle("active");
 }
 
-/*Loop para buscar as imagens na pasta*/
 
+/*Loop para buscar as imagens na pasta*/
 for(var i = 0; i < 10; i++){    
-    var img = document.createElement("img"); //criar elemento img
-    img.src = "RH-teste/" + i + ".png"; //atribuindo a propriedade source da imagem  
+    var img = document.createElement("img"); //Criar elemento img
+    img.src = "RH-teste/" + i + ".png"; //Atribuindo a propriedade source da imagem  
     img.width = "400";
 
     img.onerror = function() {
         console.log("Erro: A imagem " + this.src + " não foi encontrada."); //Verificando
-        this.style.display = "none"; // Caso não encontre a imagem, ocultar o erro. 
+        this.style.display = "none"; //Caso não encontre a imagem, ocultar o erro. 
     };
-        document.getElementById("content").appendChild(img); //adicionando imagem como filha de demo e exibindo na tela
+        document.getElementById("content").appendChild(img); //Adicionando imagem como filha de demo e exibindo na tela
 }
 
-/* Adicionando funções aos botões*/
 
+/* Adicionando funções aos botões*/
 let link1 = document.querySelector("#link1");
 let link2 = document.querySelector("#link2");
 
 link1.addEventListener("click", function(){
-    //console.log("Clicou no link1");
 
     let div = document.querySelector("#content");
     console.log(div);
@@ -34,9 +33,7 @@ link1.addEventListener("click", function(){
 });
 
 
-
 link2.addEventListener("click", function(){
-    //console.log("Clicou no link2");
 
     let div = document.querySelector("#content");
     console.log(div);
@@ -45,15 +42,15 @@ link2.addEventListener("click", function(){
 });
 
 
-/* Mostrar e ocultar texto */
 
+/* Mostrar e ocultar texto */
 let mensagem = document.querySelector(".mensagem") ;
 
-// mostra a mensagem
+//Mostrar a mensagem
 function showMessage(){   
    mensagem.style.display = "block";   
  }
-// esconde a mensagem
+//Esconder a mensagem
 function hideMessage(){
   mensagem.style.display = "none"; 
 }
