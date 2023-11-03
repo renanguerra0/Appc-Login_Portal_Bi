@@ -121,7 +121,7 @@ li {
     width:70px;
     height:15px;
     background-color: whitesmoke;
-    border-radius: 5px;
+    border-radius: 5px 0px;
     color: black;
     font-size: 10px;
 }
