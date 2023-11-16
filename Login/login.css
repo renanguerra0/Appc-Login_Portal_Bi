@@ -153,8 +153,8 @@ body * {
 }
 
 #logo-login {
-    margin: 0 auto; /* Set auto margin on left and right to center the image */
-    display: block; /* Ensure it's a block-level element to apply margin: auto */
+    margin: 0 auto;
+    display: block; 
 }
 
 

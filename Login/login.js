@@ -1,43 +1,10 @@
-/*
-let paginaSelecionada = "";
-// Obtém o elemento <select> pelo ID
-const departamentoSelect = document.getElementById("departamento");
 
-departamentoSelect.addEventListener("change", function() {
-
-    const selectedValue = departamentoSelect.value;
-    console.log("Evento de mudança detectado. Valor selecionado:", selectedValue);
-
-    switch (selectedValue) {
-        case 'comercial-varejo':
-            paginaSelecionada = "pages/comercial-varejo/index.html";
-            break;
-        case 'comercial-atacado':
-            paginaSelecionada = "pages/comercial-atacado/index.html";
-            break;
-        case 'compras':
-            paginaSelecionada = "pages/compras/index.html";
-            break;
-        case 'cobranca':
-            paginaSelecionada = 'pages/cobranca/index.html';
-            break;
-        default:
-            console.log("Opção inválida")
-            paginaSelecionada = "";
-        break;
-    }
-    console.log("Elemento selecionado:", selectedValue);
-});
-*/
-//--------------------------------------------------------------------
 let paginaSelecionada = "";
 let selectedValue;
 const departamentoSelect = document.getElementById("departamento");
 
 departamentoSelect.addEventListener("change", function() {
     selectedValue = departamentoSelect.value;
-
-    //console.log("Evento de mudança detectado. Valor selecionado:", selectedValue);
 
     // Chama uma função que depende de selectedValue
     handleSelectedValue(selectedValue);
@@ -65,7 +32,6 @@ function handleSelectedValue(value) {
 }
 
 
-//----------------------------------------------------------------------------
 /*Passando o resultado das funções*/ 
 function onChangeEmail(){
     toggleButtonsDisable();
@@ -79,7 +45,6 @@ function onChangePassword(){
 }
 
 
-//------------------------------------------------------------------------
 function acessar() {
     const email = form.email().value;
     const senha = form.senha().value;
@@ -87,8 +52,7 @@ function acessar() {
     firebase.auth().signInWithEmailAndPassword(email, senha)
         .then(response => {
             const user = response.user;
-            console.log("Resposta completa:", response);
-            console.log("ID do usuário:", user.uid);
+
             // Verifique as permissões associadas ao usuário e departamento selecionado
             verificarPermissoes(user, paginaSelecionada);
         })
@@ -97,20 +61,19 @@ function acessar() {
         });
 }
 
-
 function verificarPermissoes(user, paginaSelecionada) {
     const departamento = form.departamento().value;
 
     // Consulte o Firestore para verificar as permissões
     const autorizacoesRef = firebase.firestore().collection('autorizacoes');
 
-    autorizacoesRef.doc(user.uid)  // Use doc() para obter um documento específico
+    autorizacoesRef.doc(user.uid)  // Buscando o doc para obter um documento específico
         .get()
         .then(doc => {
             if (doc.exists) {
                 const autorizacao = doc.data();
                 if (autorizacao.departamento === departamento) {
-                    // O usuário tem permissões, redirecione para a próxima página
+                    // Caso o usuário tenha permissão, direcionar para a próxima página.
                     window.location.href = paginaSelecionada;
                 } else {
                     alert('Usuário não tem permissão para acessar esta página.');
@@ -124,9 +87,6 @@ function verificarPermissoes(user, paginaSelecionada) {
             alert('Erro ao verificar permissões. Tente novamente mais tarde.');
         });
 }
-
-//------------------------------------------------------------------------
-
 
 function getErrorMessage(error){
     if(error.code == "auth/invalid-login-credentials"){
@@ -193,3 +153,35 @@ const form = {
     login: () => document.getElementById("login"),
     departamento: () => document.getElementById("departamento")
 }
+
+/*
+let paginaSelecionada = "";
+// Obtém o elemento <select> pelo ID
+const departamentoSelect = document.getElementById("departamento");
+
+departamentoSelect.addEventListener("change", function() {
+
+    const selectedValue = departamentoSelect.value;
+    console.log("Evento de mudança detectado. Valor selecionado:", selectedValue);
+
+    switch (selectedValue) {
+        case 'comercial-varejo':
+            paginaSelecionada = "pages/comercial-varejo/index.html";
+            break;
+        case 'comercial-atacado':
+            paginaSelecionada = "pages/comercial-atacado/index.html";
+            break;
+        case 'compras':
+            paginaSelecionada = "pages/compras/index.html";
+            break;
+        case 'cobranca':
+            paginaSelecionada = 'pages/cobranca/index.html';
+            break;
+        default:
+            console.log("Opção inválida")
+            paginaSelecionada = "";
+        break;
+    }
+    console.log("Elemento selecionado:", selectedValue);
+});
+*/
