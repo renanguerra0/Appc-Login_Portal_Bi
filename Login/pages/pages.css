@@ -17,6 +17,10 @@ body {
     padding: 0;
 }
 
+.logout {
+    text-align: center;
+}
+
 #toggleButton {
     position: fixed;
     top: 10px;
@@ -25,6 +29,7 @@ body {
     background-color: var(--azul-lista);
     border: solid rgba(255, 255, 255, 0.525) 1px;
     border-radius: 5px;
+    cursor: pointer;
     
 }
 
@@ -45,6 +50,10 @@ body {
     height: 100%;
     transition: left 0.2s linear;
     left: -200px;
+
+    display: flex;
+    flex-direction: column;
+
 }
 
 .sidebar.active {
@@ -71,13 +80,12 @@ body {
     padding: 15px;
     background-color: var(--azul-lista);
     width: 130px;
-    height: 30px;
-    padding: 10px 0px;
+    height: 55px;
+    padding: 0px;
     align-items: center;
     text-align: center;
-    border: 1px solid rgba(255, 255, 255, 0.525);
-    border-radius: 5px;
     margin-bottom: 25px;
+    border-radius: 5px;
 }
 
 .menu li:hover {
@@ -91,6 +99,12 @@ body {
     display: block;
     text-align: center;
     align-items: center;
+    height: 55px;
+    padding-top: 0px;
+    display: grid;
+    border: 1px solid rgba(255, 255, 255, 0.525);
+    border-radius: 5px;
+
 }
 
 #content {
@@ -101,10 +115,6 @@ body {
 
 li {
     margin-inline-start: 25%;
-}
-
-.menu li a {
-    padding-top: 3px;
 }
 
 #content img{
@@ -120,8 +130,20 @@ li {
     margin: auto;
     width:70px;
     height:15px;
-    background-color: whitesmoke;
+    background-color: rgba(204, 203, 193, 0.782);
     border-radius: 5px 0px;
     color: black;
     font-size: 10px;
+}
+
+footer {
+    font-size: 8px;
+    text-align: center;
+    font-style: italic;
+    margin-top: auto;
+    padding: 10px;
+}
+
+footer > img {
+    width: 8px;
 }
