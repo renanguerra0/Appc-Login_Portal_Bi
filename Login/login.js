@@ -90,7 +90,7 @@ function verificarPermissoes(user, paginaSelecionada) {
 
 function getErrorMessage(error){
     if(error.code == "auth/invalid-login-credentials"){
-        return "Usuário não encontrado";
+        return "Usuário não encontrado, tente novamente.";
     }
     return error.message;
 }
