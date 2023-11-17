@@ -98,6 +98,10 @@ body * {
     align-items: center;
 }
 
+#departamento {
+    margin: 0;
+}
+
 
 .textfield{
     width: 100%;
@@ -152,14 +156,15 @@ body * {
 
 #logo-login {
     margin: 0 auto;
-    display: block; 
+    display: block;
+    width: 170px; 
 }
 
 
 .btn-login {
     width: 100%;
     padding: 16px 0px;
-    margin: 25px;
+    margin: 25px 0px;
     border: none;
     border-radius: 8px;
     outline: none;
