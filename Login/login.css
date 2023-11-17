@@ -109,7 +109,6 @@ body * {
     margin: 10px 0px;
 }
 
-
 .textfield > input {
     width: 100%;
     border: none;
@@ -142,7 +141,7 @@ body * {
 }
 
 .textfield > input::placeholder{
-    color: black;
+    color: rgb(120, 120, 120);
 }
 
 .erro {
@@ -168,7 +167,7 @@ body * {
     text-transform: uppercase;
     font-weight: 800;
     letter-spacing: 3px;
-    color: var(--azul-escuro);
+    color: var(--cinza-claro);
     background: var(--laranja-logo);
     cursor: pointer;
     box-shadow: 0px 10px 40px -15px var(--cinza-escuro);

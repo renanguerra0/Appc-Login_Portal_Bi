@@ -21,6 +21,20 @@ body {
     text-align: center;
 }
 
+.logout button {
+    border-radius: 5px;
+    background-color: var(--azul-lista);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.525);
+    cursor: pointer;
+}
+
+.logout button:hover {
+    background: var(--azul-selecao);
+    font-weight: bold;
+}
+
+
 #toggleButton {
     position: fixed;
     top: 10px;
@@ -34,7 +48,6 @@ body {
 }
 
 #toggleButton:hover {
-    
     background: var(--azul-selecao);
 }
 
@@ -50,7 +63,6 @@ body {
     height: 100%;
     transition: left 0.2s linear;
     left: -200px;
-
     display: flex;
     flex-direction: column;
 
