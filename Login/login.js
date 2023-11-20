@@ -32,13 +32,13 @@ function handleSelectedValue(value) {
 }
 
 
-/*Passando o resultado das funções*/ 
+/*Passando o resultado das funções do email*/ 
 function onChangeEmail(){
     toggleButtonsDisable();
     toggleEmailErrors();
 }
 
-/*Passando o resultado das funções*/ 
+/*Passando o resultado das funções da senha*/ 
 function onChangePassword(){
     toggleButtonsDisable();
     togglePasswordErrors();
@@ -67,12 +67,12 @@ function verificarPermissoes(user, paginaSelecionada) {
     // Consulte o Firestore para verificar as permissões
     const autorizacoesRef = firebase.firestore().collection('autorizacoes');
 
-    autorizacoesRef.doc(user.uid)  // Buscando o doc para obter um documento específico
-        .get()
-        .then(doc => {
-            if (doc.exists) {
-                const autorizacao = doc.data();
-                if (autorizacao.departamento === departamento) {
+    autorizacoesRef.doc(user.uid)  // Buscando um documento com o id do usuário
+        .get() //Operação de leitura para obter esse documento
+        .then(doc => { //Retorna uma promise quando a operação for concluída com sucesso 
+            if (doc.exists) { //Verifica a existência do documento
+                const autorizacao = doc.data(); //Obtém todos os campos do documento
+                if (autorizacao.departamento === departamento) { //Compara o campo "departametno" do documento com o "departamento" preenchido no formulário 
                     // Caso o usuário tenha permissão, direcionar para a próxima página.
                     window.location.href = paginaSelecionada;
                 } else {
