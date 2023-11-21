@@ -156,7 +156,6 @@ const form = {
 
 /*
 let paginaSelecionada = "";
-// Obtém o elemento <select> pelo ID
 const departamentoSelect = document.getElementById("departamento");
 
 departamentoSelect.addEventListener("change", function() {
