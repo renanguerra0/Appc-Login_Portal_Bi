@@ -7,51 +7,64 @@ function logout(){
     })
 }
 
+//----------------------------------------------------------------------------------------------------------------------------------------------------------
+
+function criarBotoesMenu(departamento) {
+    const menu = document.querySelector(".menu");
+
+    const botoesArray = Object.values(departamento.botoes);
+
+    botoesArray.forEach(botao => {
+        const li = document.createElement("li");
+        const a = document.createElement("a");
+        a.href = "#";
+        a.id = botao.id;
+        a.textContent = botao.nome;
+
+        a.addEventListener("click", function () {
+            exibirDashboard(botao.dashboardId);
+        });
+
+        li.appendChild(a);
+        menu.appendChild(li);
+    });
+}
+
+function exibirDashboard(dashboardId) {
+    const div = document.querySelector("#content");
+    div.innerHTML = `${dashboardId}`;
+}
+
+
+function buscarDepartamento() {
+    const departamento = "compras"; //**Lembrar de modificar o departamento
+    const departamentosRef = firebase.firestore().collection('Departamentos');
+
+    departamentosRef.doc(departamento)
+        .get()
+        .then(doc => {
+            if (doc.exists) {
+                const departamentoData = doc.data();
+                console.log(departamentoData)
+                criarBotoesMenu(departamentoData);
+            } else {
+                console.error('Documento de departamento não encontrado.');
+            }
+        })
+        .catch(error => {
+            console.error('Erro ao buscar departamento:', error);
+        });
+}
+
+buscarDepartamento();
+
+//----------------------------------------------------------------------------------------------------------------------------------------------------------
 
 /*Mostrar e ocultar a barra*/
 function toggleSidebar() {
     const sidebar = document.getElementById("sidebar");
     sidebar.classList.toggle("active");
 }
-
-
-/*Loop para buscar as imagens na pasta*/
-/*
-for(var i = 0; i < 10; i++){    
-    var img = document.createElement("img"); //Criar elemento img
-    img.src = "../../10. Dataflow/1. Departamentos/RecursosHumanos/Comunicados/" + i + ".png"; //Atribuindo a propriedade source da imagem  
-    img.width = "400";
-
-    img.onerror = function() {
-        console.log("Erro: A imagem " + this.src + " não foi encontrada."); //Verificando
-        this.style.display = "none"; //Caso não encontre a imagem, ocultar o erro. 
-    };
-        document.getElementById("content").appendChild(img); //Adicionando imagem como filha de content e exibindo na tela
-}
-*/
-
-/* Adicionando funções aos botões*/
-let link1 = document.querySelector("#link1");
-let link2 = document.querySelector("#link2");
-
-link1.addEventListener("click", function(){
-
-    let div = document.querySelector("#content");
-    console.log(div);
-
-    div.innerHTML = '<iframe title="047 Pedidos por Comprador" width="1400" height="700" src="https://app.powerbi.com/reportEmbed?reportId=1262b321-57db-49ef-a33c-c72e4572a052&navContentPaneEnabled=false&autoAuth=true&ctid=f5c1c89d-9a3a-480b-b011-2d2c3d6ce25d" frameborder="0" allowFullScreen="true"></iframe>'
-});
-
-
-link2.addEventListener("click", function(){
-
-    let div = document.querySelector("#content");
-    console.log(div);
-
-    div.innerHTML = '<iframe title="002 Pedido de Compras" width="1400" height="700" src="https://app.powerbi.com/reportEmbed?reportId=c81c7d3d-1f69-453f-8bee-7ceae3c83836&autoAuth=true&navContentPaneEnabled=false&ctid=f5c1c89d-9a3a-480b-b011-2d2c3d6ce25d" frameborder="0" allowFullScreen="true"></iframe>'
-});
-
-
 
 /* Mostrar e ocultar texto */
 let mensagem = document.querySelector(".mensagem") ;

@@ -7,11 +7,77 @@ function logout(){
     })
 }
 
+//-----------------------------------------------------------------------------
+
+function criarBotoesMenu(departamento) {
+    const menu = document.querySelector(".menu");
+
+    const botoesArray = Object.values(departamento.botoes);
+
+    botoesArray.forEach(botao => {
+        const li = document.createElement("li");
+        const a = document.createElement("a");
+        a.href = "#";
+        a.id = botao.id;
+        a.textContent = botao.nome;
+
+        a.addEventListener("click", function () {
+            exibirDashboard(botao.dashboardId);
+        });
+
+        li.appendChild(a);
+        menu.appendChild(li);
+    });
+}
+
+function exibirDashboard(dashboardId) {
+    const div = document.querySelector("#content");
+    div.innerHTML = `${dashboardId}`;
+}
+
+
+function buscarDepartamento() {
+    const departamento = "comercial-varejo"; //**Lembrar de modificar o departamento
+    const departamentosRef = firebase.firestore().collection('Departamentos');
+
+    departamentosRef.doc(departamento)
+        .get()
+        .then(doc => {
+            if (doc.exists) {
+                const departamentoData = doc.data();
+                console.log(departamentoData)
+                criarBotoesMenu(departamentoData);
+            } else {
+                console.error('Documento de departamento não encontrado.');
+            }
+        })
+        .catch(error => {
+            console.error('Erro ao buscar departamento:', error);
+        });
+}
+
+buscarDepartamento();
+
+//-----------------------------------------------------------------------------
+
+
 
 /*Mostrar e ocultar a barra*/
 function toggleSidebar() {
     const sidebar = document.getElementById("sidebar");
     sidebar.classList.toggle("active");
+}
+
+/* Mostrar e ocultar texto */
+let mensagem = document.querySelector(".mensagem") ;
+
+//Mostrar a mensagem
+function showMessage(){   
+   mensagem.style.display = "block";   
+ }
+//Esconder a mensagem
+function hideMessage(){
+  mensagem.style.display = "none"; 
 }
 
 
@@ -30,7 +96,8 @@ for(var i = 0; i < 10; i++){
 }
 */
 
-/* Adicionando funções aos botões*/
+//Método antigo para acrescentar funcionalidade aos botões já criados.
+/* 
 let link1 = document.querySelector("#link1");
 let link2 = document.querySelector("#link2");
 
@@ -50,17 +117,4 @@ link2.addEventListener("click", function(){
 
     div.innerHTML = '<iframe title="034 Vendas-gerentes" width="1400" height="700" src="https://app.powerbi.com/reportEmbed?reportId=b3471f8c-8adb-4a05-b207-85b4af37ed5e&navContentPaneEnabled=false&autoAuth=true&ctid=f5c1c89d-9a3a-480b-b011-2d2c3d6ce25d" frameborder="0" allowFullScreen="true"></iframe>'
 });
-
-
-
-/* Mostrar e ocultar texto */
-let mensagem = document.querySelector(".mensagem") ;
-
-//Mostrar a mensagem
-function showMessage(){   
-   mensagem.style.display = "block";   
- }
-//Esconder a mensagem
-function hideMessage(){
-  mensagem.style.display = "none"; 
-}
+*/

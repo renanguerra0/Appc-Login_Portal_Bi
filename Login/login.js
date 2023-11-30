@@ -76,7 +76,7 @@ function verificarPermissoes(user, paginaSelecionada) {
                     // Caso o usuário tenha permissão, direcionar para a próxima página.
                     window.location.href = paginaSelecionada;
                 } else {
-                    alert('Usuário não tem permissão para acessar esta página.');
+                    alert('Usuário não tem permissão para acessar este departamento.');
                 }
             } else {
                 alert('Documento de autorização não encontrado para o usuário.');
@@ -153,34 +153,3 @@ const form = {
     login: () => document.getElementById("login"),
     departamento: () => document.getElementById("departamento")
 }
-
-/*
-let paginaSelecionada = "";
-const departamentoSelect = document.getElementById("departamento");
-
-departamentoSelect.addEventListener("change", function() {
-
-    const selectedValue = departamentoSelect.value;
-    console.log("Evento de mudança detectado. Valor selecionado:", selectedValue);
-
-    switch (selectedValue) {
-        case 'comercial-varejo':
-            paginaSelecionada = "pages/comercial-varejo/index.html";
-            break;
-        case 'comercial-atacado':
-            paginaSelecionada = "pages/comercial-atacado/index.html";
-            break;
-        case 'compras':
-            paginaSelecionada = "pages/compras/index.html";
-            break;
-        case 'cobranca':
-            paginaSelecionada = 'pages/cobranca/index.html';
-            break;
-        default:
-            console.log("Opção inválida")
-            paginaSelecionada = "";
-        break;
-    }
-    console.log("Elemento selecionado:", selectedValue);
-});
-*/

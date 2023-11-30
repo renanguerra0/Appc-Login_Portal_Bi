@@ -1,11 +1,12 @@
 
 const firebaseConfig = {
-    apiKey: "AIzaSyBf8TwjldRjbEsXZmEvMDzFulkLc_lMQSg",
-    authDomain: "teste-login-fea06.firebaseapp.com",
-    databaseURL: "https://teste-login-fea06-default-rtdb.firebaseio.com",
-    projectId: "teste-login-fea06",
-    storageBucket: "teste-login-fea06.appspot.com",
-    messagingSenderId: "407211063125",
-    appId: "1:407211063125:web:656347000044e57e6421dc"
-};
+    apiKey: "AIzaSyAUlh6fC51DME2M_ZcgNw9eHyfS6gCbUTc",
+    authDomain: "appc-firebase.firebaseapp.com",
+    databaseURL: "https://appc-firebase-default-rtdb.firebaseio.com",
+    projectId: "appc-firebase",
+    storageBucket: "appc-firebase.appspot.com",
+    messagingSenderId: "380060349613",
+    appId: "1:380060349613:web:92a7f6e28489c866734224"
+  };
+
 firebase.initializeApp(firebaseConfig);
