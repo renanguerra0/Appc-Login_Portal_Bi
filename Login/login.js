@@ -63,8 +63,6 @@ function acessar() {
 
 function verificarPermissoes(user, paginaSelecionada) {
     const departamento = form.departamento().value;
-
-    // Consulte o Firestore para verificar as permissões
     const autorizacoesRef = firebase.firestore().collection('autorizacoes');
 
     autorizacoesRef.doc(user.uid)  // Buscando um documento com o id do usuário
@@ -72,7 +70,8 @@ function verificarPermissoes(user, paginaSelecionada) {
         .then(doc => { //Retorna uma promise quando a operação for concluída com sucesso 
             if (doc.exists) { //Verifica a existência do documento
                 const autorizacao = doc.data(); //Obtém todos os campos do documento
-                if (autorizacao.departamento === departamento) { //Compara o campo "departametno" do documento com o "departamento" preenchido no formulário 
+                const departamentosAutorizados = Object.values(autorizacao.departamento) //Obtém todos os valores dos campos
+                if (departamentosAutorizados.includes(departamento)) { //Verificar se o departamento selecionado está presente no valor do campo referente ao documento que está sendo analisado
                     // Caso o usuário tenha permissão, direcionar para a próxima página.
                     window.location.href = paginaSelecionada;
                 } else {
