@@ -22,7 +22,7 @@ body {
 }
 
 .logout button {
-    border-radius: 5px;
+    border-radius: 20px;
     background-color: var(--azul-lista);
     color: #fff;
     border: 1px solid rgba(255, 255, 255, 0.525);
@@ -52,6 +52,15 @@ body {
 
 #toggleButton img {
     padding-top: 5px;
+}
+
+button {
+    align-items: center;
+    display: inline-flex;
+}
+
+button > img {
+    padding-right: 2px;
 }
 
 .sidebar {
