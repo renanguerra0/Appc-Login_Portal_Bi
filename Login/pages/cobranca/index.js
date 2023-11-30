@@ -7,7 +7,6 @@ function logout(){
     })
 }
 
-
 //------------------------------------------------------------------------------------------------------------------------------------------
 
 function criarBotoesMenu(departamento) {
@@ -36,7 +35,6 @@ function exibirDashboard(dashboardId) {
     div.innerHTML = `${dashboardId}`;
 }
 
-
 function buscarDepartamento() {
     const departamento = "cobranca";
     const departamentosRef = firebase.firestore().collection('Departamentos');
@@ -46,7 +44,6 @@ function buscarDepartamento() {
         .then(doc => {
             if (doc.exists) {
                 const departamentoData = doc.data();
-                console.log(departamentoData)
                 criarBotoesMenu(departamentoData);
             } else {
                 console.error('Documento de departamento não encontrado.');

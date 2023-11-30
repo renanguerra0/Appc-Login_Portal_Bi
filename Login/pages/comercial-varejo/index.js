@@ -45,7 +45,6 @@ function buscarDepartamento() {
         .then(doc => {
             if (doc.exists) {
                 const departamentoData = doc.data();
-                console.log(departamentoData)
                 criarBotoesMenu(departamentoData);
             } else {
                 console.error('Documento de departamento não encontrado.');
@@ -59,8 +58,6 @@ function buscarDepartamento() {
 buscarDepartamento();
 
 //-----------------------------------------------------------------------------
-
-
 
 /*Mostrar e ocultar a barra*/
 function toggleSidebar() {
