@@ -6,7 +6,7 @@ const departamentoSelect = document.getElementById("departamento");
 departamentoSelect.addEventListener("change", function() {
     selectedValue = departamentoSelect.value;
 
-    // Chama uma função que depende de selectedValue
+    //Chama uma função que depende de selectedValue
     handleSelectedValue(selectedValue);
 });
 
