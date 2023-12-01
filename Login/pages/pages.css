@@ -103,7 +103,6 @@ button > img {
     height: 43.4px;
     padding: 0px;
     align-items: center;
-    text-align: center;
     margin-bottom: 25px;
     border-radius: 5px;
 }
@@ -115,7 +114,6 @@ button > img {
 .menu a {
     text-decoration: none;
     color: #fff;
-    display: block;
     text-align: center;
     align-items: center;
     height: 43.4px;
@@ -173,9 +171,7 @@ footer > img {
     height: 50px;
     border: none;
     outline: none;
-    color: #fff;
     background-color: var(--azul-lista);
-    cursor: pointer;
     position: relative;
     z-index: 0;
     border-radius: 10px;
