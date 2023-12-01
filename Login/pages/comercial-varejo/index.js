@@ -20,6 +20,7 @@ function criarBotoesMenu(departamento) {
         a.href = "#";
         a.id = botao.id;
         a.textContent = botao.nome;
+        li.className = "glow-on-hover";
 
         a.addEventListener("click", function () {
             exibirDashboard(botao.dashboardId);
