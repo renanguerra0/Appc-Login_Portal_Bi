@@ -1,4 +1,39 @@
+firebase.auth().onAuthStateChanged(user => {
+    if (!user) {
+        window.location.href = "../../login.html";
+    } else {
+        verificarPermissoes(user);
+    }
+});
 
+//Verificando se o usuário pode permanecer naquela página
+function verificarPermissoes(user) {
+    const departamento = "compras";
+    const autorizacoesRef = firebase.firestore().collection('autorizacoes');
+
+    autorizacoesRef.doc(user.uid)
+        .get()
+        .then(doc => {
+            if (doc.exists) {
+                const autorizacao = doc.data();
+                const departamentosAutorizados = Object.values(autorizacao.departamento);
+
+                if (!departamentosAutorizados.includes(departamento)) {
+                    window.location.href = "../../login.html";
+                }
+            } else {
+                window.location.href = "../../login.html";
+            }
+        })
+        .catch(error => {
+            console.error('Erro ao verificar permissões:', error);
+            window.location.href = "../../login.html";
+        });
+}
+
+
+
+//---------------------------------------------------------------------------------------------------------------------------------------------------
 function logout(){
     firebase.auth().signOut().then(() => {
         window.location.href = "../../login.html"
