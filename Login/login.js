@@ -57,7 +57,7 @@ function acessar() {
             verificarPermissoes(user, paginaSelecionada);
         })
         .catch(error => {
-            alert(getErrorMessage(error));
+            alert("Usuário ou senha incorretos, tente novamente.");
         });
 }
 

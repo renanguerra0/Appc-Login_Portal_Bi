@@ -6,6 +6,8 @@ firebase.auth().onAuthStateChanged(user => {
     }
 });
 
+//-----------------------------------------------------------------------------------------------------------------------------------------
+
 //Verificando se o usuário pode permanecer naquela página
 function verificarPermissoes(user) {
     const departamento = "cobranca";
