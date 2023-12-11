@@ -1,37 +1,4 @@
 
-let paginaSelecionada = "";
-let selectedValue;
-const departamentoSelect = document.getElementById("departamento");
-
-departamentoSelect.addEventListener("change", function() {
-    selectedValue = departamentoSelect.value;
-
-    //Chama uma função que depende de selectedValue
-    handleSelectedValue(selectedValue);
-});
-
-function handleSelectedValue(value) {
-    switch (value) {
-        case 'comercial-varejo':
-            paginaSelecionada = "pages/comercial-varejo/index.html";
-            break;
-        case 'comercial-atacado':
-            paginaSelecionada = "pages/comercial-atacado/index.html";
-            break;
-        case 'compras':
-            paginaSelecionada = "pages/compras/index.html";
-            break;
-        case 'cobranca':
-            paginaSelecionada = 'pages/cobranca/index.html';
-            break;
-        default:
-            console.log("Opção inválida");
-            paginaSelecionada = "";
-            break;
-    }
-}
-
-
 /*Passando o resultado das funções do email*/ 
 function onChangeEmail(){
     toggleButtonsDisable();
@@ -44,49 +11,25 @@ function onChangePassword(){
     togglePasswordErrors();
 }
 
+//----------------------------------------------------------------------------------
 
+//Validação para acessar a página seguinte
 function acessar() {
     const email = form.email().value;
     const senha = form.senha().value;
 
     firebase.auth().signInWithEmailAndPassword(email, senha)
         .then(response => {
-            const user = response.user;
-
-            // Verifique as permissões associadas ao usuário e departamento selecionado
-            verificarPermissoes(user, paginaSelecionada);
+            window.location.href = "pages/index.html"
         })
         .catch(error => {
             alert("Usuário ou senha incorretos, tente novamente.");
         });
 }
 
-function verificarPermissoes(user, paginaSelecionada) {
-    const departamento = form.departamento().value;
-    const autorizacoesRef = firebase.firestore().collection('autorizacoes');
+//----------------------------------------------------------------------------------
 
-    autorizacoesRef.doc(user.uid)  // Buscando um documento com o id do usuário
-        .get() //Operação de leitura para obter esse documento
-        .then(doc => { //Retorna uma promise quando a operação for concluída com sucesso 
-            if (doc.exists) { //Verifica a existência do documento
-                const autorizacao = doc.data(); //Obtém todos os campos do documento
-                const departamentosAutorizados = Object.values(autorizacao.departamento) //Obtém todos os valores dos campos
-                if (departamentosAutorizados.includes(departamento)) { //Verificar se o departamento selecionado está presente no valor do campo referente ao documento que está sendo analisado
-                    // Caso o usuário tenha permissão, direcionar para a próxima página.
-                    window.location.href = paginaSelecionada;
-                } else {
-                    alert('Usuário não tem permissão para acessar este departamento.');
-                }
-            } else {
-                alert('Documento de autorização não encontrado para o usuário.');
-            }
-        })
-        .catch(error => {
-            console.error('Erro ao verificar permissões:', error);
-            alert('Erro ao verificar permissões. Tente novamente mais tarde.');
-        });
-}
-
+//Informar ao usuário caso a senha ou email estejam incorretos
 function getErrorMessage(error){
     if(error.code == "auth/invalid-login-credentials"){
         return "Usuário ou senha incorretos, tente novamente.";
@@ -94,7 +37,7 @@ function getErrorMessage(error){
     return error.message;
 }
 
-/*Verificando se o email é válido*/
+//*Verificando se o email é válido
 function isEmailValid(){
     const email = form.email().value;
     if(!email){
@@ -103,30 +46,29 @@ function isEmailValid(){
     return validateEmail(email);
 }
 
-/*Mostrar ou esconder erro email*/
+//----------------------------------------------------------------------------------
+
+//*Mostrar ou esconder erro email
 function toggleEmailErrors(){
     const email = form.email().value;
     form.emailObrigatorio().style.display = email ? "none" : "block";
     form.emailInvalido().style.display = validateEmail(email) ? "none" : "block";
 }
 
-
-/*Mostrar ou esconder erro senha*/
+//Mostrar ou esconder erro senha
 function togglePasswordErrors(){
     const senha = form.senha().value;
     form.senhaObrigatoria().style.display = senha ? "none" : "block";
 }
 
-
-/*Habilitar ou desabilitar o botão*/
+//Habilitar ou desabilitar o botão
 function toggleButtonsDisable(){
     const emailValid = isEmailValid();
     const senha = isPasswordValid();
     form.login().disabled = !emailValid || !senha;
 }
 
-
-/*Verificando se a senha é válida*/
+//Verificando se a senha é válida
 function isPasswordValid(){
     const senha = form.senha().value;
     if(!senha){
@@ -135,20 +77,19 @@ function isPasswordValid(){
     return true;
 }
 
-
-/*Validando o email*/ 
+//Verificando a estrutura do email 
 function validateEmail(email){
     return /\S+@\S+\.\S/.test(email);
 }
 
+//----------------------------------------------------------------------------------
 
-/*Criando variáveis para chamar nas funções*/
+//Criando variáveis para chamar nas funções
 const form = {
     email: () => document.getElementById("email"),
     senha: () => document.getElementById("senha"),
     emailObrigatorio: () => document.getElementById("email-obrigatorio"),
     emailInvalido: () => document.getElementById("email-invalido"),
     senhaObrigatoria: () => document.getElementById("senha-obrigatoria"),
-    login: () => document.getElementById("login"),
-    departamento: () => document.getElementById("departamento")
+    login: () => document.getElementById("login")
 }

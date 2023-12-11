@@ -7,35 +7,24 @@
     <link rel="shortcut icon" href="pages/Imagens/Logotipo1.png" type="image/x-icon">
     <script src="login.js" defer></script>
     <title>Portal Bi - Login</title>
-</head> 
+</head>
 <body>
     <div class="main-login">
 
         <div class="left-login">
             <h1>Realize o login <br>e tenha acesso aos dashboards.</h1>
-            <img src="pages/Imagens_login/dashboard-animate.svg" class="left-login-image" alt="dashboard">
+            <img src="pages/imagens_login/dashboard-animate.svg" class="left-login-image" alt="dashboard">
         </div>
 
         <div class="right-login">
             <div class="card-login">
 
-                <img src="pages/Imagens_login/Logotipo2Natal.png" alt="Logotipo" id="logo-login">
+                <img src="pages/imagens_login/Logotipo2Natal.png" alt="Logotipo" id="logo-login">
 
                 <form class="textfield" id="forms">
 
                     <div class="textfield">
-                        <label for="departamento" id="testeDepart"> <img src="pages/Imagens_login/departamento.png" alt="departamento" width="15px"> Departamento</label>
-                        <select id="departamento" name="departamento" class="textfield">
-                            <option value="none">-</option>
-                            <option value="comercial-varejo" id="comercial-varejo">Comercial Varejo</option>
-                            <option value="comercial-atacado" id="comercial-atacado">Comercial Atacado</option>
-                            <option value="compras" id="compras">Compras</option>
-                            <option value="cobranca" id="cobranca">Cobrança</option>
-                        </select>
-                    </div>
-
-                    <div class="textfield">
-                        <label for="email"> <img src="pages/Imagens_login/usuario.png" alt="login" width="15px"> Usuário</label>
+                        <label for="email"> <img src="pages/imagens_login/usuario.png" alt="login" width="15px"> Usuário</label>
                         <img src="" alt="">
                         <input type="email" name="email" id="email" placeholder="Email@exemplo.com.br" onchange="onChangeEmail()">
                         <div class="erro" id="email-obrigatorio">*Email obrigatório</div>
@@ -43,14 +32,13 @@
                     </div>
 
                     <div class="textfield">
-                        <label for="senha"> <img src="pages/Imagens_login/cadeado.png" alt="cadeado" width="15px"> Senha</label>
+                        <label for="senha"> <img src="pages/imagens_login/cadeado.png" alt="cadeado" width="15px"> Senha</label>
                         <input type="password" name="senha" id="senha" placeholder="Digite sua senha" onchange="onChangePassword()">
                         <div class="erro" id="senha-obrigatoria">*Senha obrigatória</div>
                     </div>
 
                     <button class="btn-login" id="login" type="button" disabled="true" onclick="acessar()">Login</button>
                 </form>
-                
             </div>
         </div>
     </div>
